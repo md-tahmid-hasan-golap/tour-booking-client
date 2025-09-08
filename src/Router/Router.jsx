@@ -8,6 +8,7 @@ import AddPackage from "../Components/AddPackage";
 import MyPackages from "../Components/MyPackages";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
+import PrivateRouter from "../Components/PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myBookings",
-        Component: MyBookings,
+        element: (
+          <PrivateRouter>
+            <MyBookings></MyBookings>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/about",
@@ -32,11 +37,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/addPackage",
-        Component: AddPackage,
+        element: (
+          <PrivateRouter>
+            <AddPackage></AddPackage>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/myPackages",
-        Component: MyPackages,
+        element: (
+          <PrivateRouter>
+            <MyPackages></MyPackages>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/register",

@@ -1,5 +1,5 @@
 import React from "react";
-import ture from "../assets/vecteezy_travel-logo-design-vector_.jpg";
+import ture from "../assets/img/vecteezy_travel-logo-design-vector_.jpg";
 const Footer = () => {
   return (
     <footer className="bg-base-300 text-base-content px-10 py-12">

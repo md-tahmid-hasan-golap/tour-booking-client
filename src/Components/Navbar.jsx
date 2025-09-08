@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../firebase/FirebaseAuthProvider";
 import Swal from "sweetalert2";
-
+import logo from "../assets/img/4136591.jpg";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,10 +11,10 @@ const Navbar = () => {
     logOut()
       .then(() => {
         Swal.fire({
-          title: "Logged Out Successfully!",
+          title: "Register SuccessFully!",
           icon: "success",
+          draggable: true,
           timer: 1500,
-          showConfirmButton: false,
         });
         navigate("/");
       })
@@ -40,44 +40,52 @@ const Navbar = () => {
         All Packages
       </NavLink>
       <NavLink
-        to="/myBookings"
-        className={({ isActive }) =>
-          isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
-        }
-      >
-        My Bookings
-      </NavLink>
-      <NavLink
         to="/about"
         className={({ isActive }) =>
           isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
         }
       >
-        About
+        About Us
       </NavLink>
-      <NavLink
-        to="/addPackage"
-        className={({ isActive }) =>
-          isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
-        }
-      >
-        Add Package
-      </NavLink>
-      <NavLink
-        to="/myPackages"
-        className={({ isActive }) =>
-          isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
-        }
-      >
-        Manage My Packages
-      </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/myBookings"
+            className={({ isActive }) =>
+              isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
+            }
+          >
+            My Bookings
+          </NavLink>
+          <NavLink
+            to="/addPackage"
+            className={({ isActive }) =>
+              isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
+            }
+          >
+            Add Package
+          </NavLink>
+          <NavLink
+            to="/myPackages"
+            className={({ isActive }) =>
+              isActive ? "bg-blue-600 text-white btn mr-2" : "btn mr-2"
+            }
+          >
+            Manage My Packages
+          </NavLink>
+        </>
+      )}
     </>
   );
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-2 md:px-6 py-2">
       {/* Navbar Start */}
-      <div className="navbar-start">
+      <div className="navbar-start flex items-center">
+        {/* Logo */}
+        <img src={logo} alt="Logo" className="h-10 w-10 hidden md:flex" />
+
+        {/* Mobile Dropdown */}
         <div className="dropdown">
           <div tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -102,6 +110,8 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
+
+        {/* Title */}
         <Link className="btn btn-ghost text-xl md:text-2xl font-bold">
           Tour Booking
         </Link>
