@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const links = (
     <>
       <NavLink
@@ -90,12 +92,21 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3 mr-4">
-        <Link to="/register" className="btn">
-          Register
-        </Link>
-        <Link to="/login" className="btn">
-          Login
-        </Link>
+        {user ? (
+          <div className="navbar-end gap-3 mr-4">
+            <button className="btn text-red-600">logOut</button>
+          </div>
+        ) : (
+          <div className="navbar-end gap-3 mr-4">
+            {" "}
+            <Link to="/register" className="btn">
+              Register
+            </Link>
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

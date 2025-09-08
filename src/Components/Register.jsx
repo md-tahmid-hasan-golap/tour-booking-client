@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import register from "../assets/Lottie/registerLottie.json"; // ✅ double .json ফিক্স করা হলো
 import Lottie from "lottie-react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom"; // ✅ router-dom থেকে ইম্পোর্ট
+import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const Register = () => {
+  const { creatUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,6 +18,14 @@ const Register = () => {
 
     // Temporary Console (পরে Firebase এ connect করবি)
     console.log({ name, address, phone, email, password });
+    creatUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

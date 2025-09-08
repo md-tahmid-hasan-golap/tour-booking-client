@@ -1,10 +1,12 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom"; // ✅ Correct import
 import LoginLottie from "../assets/Lottie/registerLottie.json"; // ✅ fixed extension
+import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,10 +15,17 @@ const Login = () => {
 
     // Temporary console (later connect with Firebase)
     console.log({ email, password });
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen py-10 px-4">
+    <div className="hero bg-base-200 min-h-screen py-10 px-4 my-5 rounded-md">
       <div className="hero-content flex-col lg:flex-row-reverse gap-12 w-full max-w-6xl">
         {/* Lottie Animation */}
         <div className="w-full lg:w-1/2 flex justify-center">
