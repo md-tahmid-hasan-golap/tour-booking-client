@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         Component: AddPackage,
       },
       {
-        path: "/Packages",
+        path: "/myPackages",
         Component: MyPackages,
       },
       {
