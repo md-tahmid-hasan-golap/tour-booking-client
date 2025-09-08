@@ -112,9 +112,7 @@ const Navbar = () => {
         </div>
 
         {/* Title */}
-        <Link className="btn btn-ghost text-xl md:text-2xl font-bold">
-          Tour Booking
-        </Link>
+        <Link className="btn btn-ghost text-xl  font-bold">Tour Booking</Link>
       </div>
 
       {/* Navbar Center */}
