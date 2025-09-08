@@ -1,12 +1,24 @@
 import Lottie from "lottie-react";
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom"; // ✅ Correct import
+import { Link, useNavigate } from "react-router-dom"; // ✅ Correct import
 import LoginLottie from "../assets/Lottie/registerLottie.json"; // ✅ fixed extension
 import { AuthContext } from "../firebase/FirebaseAuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +30,13 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result);
+        Swal.fire({
+          title: "Register SuccessFully!",
+          icon: "success",
+          draggable: true,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -76,7 +95,10 @@ const Login = () => {
             <div className="divider">OR</div>
 
             {/* Google Sign In */}
-            <button className="btn btn-outline w-full flex items-center gap-2">
+            <button
+              onClick={handleSignInWithGoogle}
+              className="btn btn-outline w-full flex items-center gap-2"
+            >
               <FcGoogle size={24} /> Continue with Google
             </button>
           </div>

@@ -2,11 +2,23 @@ import React, { useContext } from "react";
 import register from "../assets/Lottie/registerLottie.json"; // ✅ double .json ফিক্স করা হলো
 import Lottie from "lottie-react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom"; // ✅ router-dom থেকে ইম্পোর্ট
+import { Link, useNavigate } from "react-router-dom"; // ✅ router-dom থেকে ইম্পোর্ট
 import { AuthContext } from "../firebase/FirebaseAuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { creatUser } = useContext(AuthContext);
+  const { creatUser, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,6 +34,13 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          title: "Register SuccessFully!",
+          icon: "success",
+          draggable: true,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -125,7 +144,10 @@ const Register = () => {
             <div className="divider">OR</div>
 
             {/* Google Sign In */}
-            <button className="btn btn-outline w-full flex items-center gap-2">
+            <button
+              onClick={handleSignInWithGoogle}
+              className="btn btn-outline w-full flex items-center gap-2"
+            >
               <FcGoogle size={24} /> Continue with Google
             </button>
           </div>
