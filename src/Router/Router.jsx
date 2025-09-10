@@ -10,6 +10,7 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import PrivateRouter from "../Components/PrivateRouter";
 import TureDetails from "../Components/TureDetails";
+import UpdateTure from "../Components/UpdateTure";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <TureDetails></TureDetails>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/updateTure/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/ture-details/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <UpdateTure></UpdateTure>
           </PrivateRouter>
         ),
       },
