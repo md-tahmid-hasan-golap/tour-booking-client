@@ -9,6 +9,7 @@ import MyPackages from "../Components/MyPackages";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import PrivateRouter from "../Components/PrivateRouter";
+import TureDetails from "../Components/TureDetails";
 
 const router = createBrowserRouter([
   {
@@ -17,10 +18,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: () => fetch("http://localhost:5000/ture-limit"),
         Component: Home,
       },
       {
         path: "/allPackages",
+        loader: () => fetch("http://localhost:5000/all-tures-cards"),
         Component: AllPackages,
       },
       {
@@ -28,6 +31,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyBookings></MyBookings>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/ture-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/ture-details/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <TureDetails></TureDetails>
           </PrivateRouter>
         ),
       },
