@@ -11,10 +11,12 @@ import Register from "../Components/Register";
 import PrivateRouter from "../Components/PrivateRouter";
 import TureDetails from "../Components/TureDetails";
 import UpdateTure from "../Components/UpdateTure";
+import ErrorPage from "../Components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     Component: MainLayouts,
     children: [
       {
