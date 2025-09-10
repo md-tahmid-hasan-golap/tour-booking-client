@@ -15,7 +15,7 @@ const AllPackages = () => {
       {/* Responsive Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tures.map((ture) => (
-          <TureCards key={ture._id} ture={ture}></TureCards>
+          <TureCards key={ture._id} ture={ture} showActions={true}></TureCards>
         ))}
       </div>
     </div>

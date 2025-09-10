@@ -4,7 +4,7 @@ import { FaEye, FaEdit, FaSyncAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
-const TureCards = ({ ture, showAction = false }) => {
+const TureCards = ({ ture, showAction = false, showActions = false }) => {
   const navigate = useNavigate();
   const {
     _id,
@@ -112,6 +112,20 @@ const TureCards = ({ ture, showAction = false }) => {
             </>
           )}
         </div>
+
+        {/* Show All Button */}
+        {!showActions && (
+          <>
+            <div className="mt-4 text-center">
+              <Link
+                to="/allPackages" // <-- এখানে তুমি Show All page এর লিংক দিবে
+                className="inline-block bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 transition"
+              >
+                Show All
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
