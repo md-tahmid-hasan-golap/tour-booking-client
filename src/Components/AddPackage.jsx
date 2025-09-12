@@ -80,7 +80,7 @@ const AddPackage = () => {
 
       {/* Heading */}
       <div className="p-6 md:p-12 text-center space-y-4">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">
+        <h1 className="text-3xl md:text-2xl lg:text-3xl font-bold">
           Add Tour Package
         </h1>
         <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
