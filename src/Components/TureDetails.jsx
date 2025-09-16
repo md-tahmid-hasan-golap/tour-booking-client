@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 const TureDetails = () => {
   const data = useLoaderData();
@@ -57,9 +57,12 @@ const TureDetails = () => {
           <p className="text-xl font-bold text-green-600">Price: ${price}</p>
 
           {/* Book Now Button */}
-          <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition">
+          <Link
+            to="/bookingFrom"
+            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition"
+          >
             Book Now
-          </button>
+          </Link>
         </div>
       </div>
 

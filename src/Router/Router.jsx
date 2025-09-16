@@ -12,6 +12,7 @@ import PrivateRouter from "../Components/PrivateRouter";
 import TureDetails from "../Components/TureDetails";
 import UpdateTure from "../Components/UpdateTure";
 import ErrorPage from "../Components/ErrorPage";
+import BookingFrom from "../Components/BookingFrom";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyBookings></MyBookings>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/bookingFrom",
+        element: (
+          <PrivateRouter>
+            <BookingFrom></BookingFrom>
           </PrivateRouter>
         ),
       },
