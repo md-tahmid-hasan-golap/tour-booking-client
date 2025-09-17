@@ -40,6 +40,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/bookingFrom",
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/ture-details/${params.id}`),
         element: (
           <PrivateRouter>
             <BookingFrom></BookingFrom>

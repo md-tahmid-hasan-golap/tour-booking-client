@@ -1,108 +1,125 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
+import React, { useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const BookingForm = ({ closeModal }) => {
-  const { user } = useContext(AuthContext); // logged-in user
-  const [tourName, setTourName] = useState("");
-  const [price, setPrice] = useState("");
-  const [buyerName, setBuyerName] = useState("");
+  const { user } = useContext(AuthContext);
+  const location = useLocation();
+  const { tourName, price } = location.state || {};
+
+  const [buyerName, setBuyerName] = useState(user?.displayName || "");
   const [note, setNote] = useState("");
+
+  useEffect(() => {
+    if (user?.displayName) setBuyerName(user.displayName);
+  }, [user]);
 
   const handleBooking = async (e) => {
     e.preventDefault();
 
     if (!user) {
-      Swal.fire("Error!", "You must be logged in to book.", "error");
+      Swal.fire({
+        icon: "error",
+        title: "Not Logged In",
+        text: "Please log in before booking a tour!",
+      });
       return;
     }
 
     const bookingData = {
       tourName,
       price,
-      buyerName,
+      userName: user.displayName,
+      email: user.email,
       note,
-      email: user.email, // link booking to logged-in user
+      tourId: Date.now().toString(),
     };
 
     try {
-      await axios.post("http://localhost:5000/my-bookings", bookingData);
-      Swal.fire("Success!", "Your booking has been submitted!", "success");
+      const res = await fetch("http://localhost:5000/my-bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingData),
+      });
 
-      // Reset form
-      setTourName("");
-      setPrice("");
-      setBuyerName("");
-      setNote("");
+      const data = await res.json();
 
-      if (closeModal) closeModal();
-    } catch (err) {
-      console.error(err);
-      Swal.fire("Error!", "Booking failed. Try again.", "error");
+      if (data.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Booking Submitted!",
+          text: "Your booking request has been stored.",
+          confirmButtonColor: "#22c55e",
+        });
+        setNote("");
+        if (closeModal) closeModal();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Booking Failed",
+          text: data.message || "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Could not submit booking. Try again later.",
+      });
     }
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md max-w-md mx-auto my-7">
-      <h2 className="text-2xl font-bold mb-4 text-center">Book Tour</h2>
+    <div className="p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md w-full max-w-lg mx-auto my-6">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">
+        Book Tour
+      </h2>
       <form onSubmit={handleBooking} className="space-y-4">
         {/* Tour Name */}
         <div>
-          <label className="block font-semibold mb-1">Tour Name</label>
+          <label className="block font-semibold mb-1 text-sm sm:text-base">
+            Tour Name
+          </label>
           <input
             type="text"
-            value={tourName}
-            onChange={(e) => setTourName(e.target.value)}
-            placeholder="Enter tour name"
-            className="w-full p-2 rounded border border-gray-300 dark:bg-gray-700 dark:text-gray-200"
-            required
+            value={tourName || ""}
+            readOnly
+            className="w-full border px-3 py-2 rounded bg-gray-200 text-sm sm:text-base"
           />
         </div>
 
         {/* Price */}
         <div>
-          <label className="block font-semibold mb-1">Price</label>
+          <label className="block font-semibold mb-1 text-sm sm:text-base">
+            Price
+          </label>
           <input
             type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="Enter price"
-            className="w-full p-2 rounded border border-gray-300 dark:bg-gray-700 dark:text-gray-200"
-            required
-          />
-        </div>
-
-        {/* Buyer Name */}
-        <div>
-          <label className="block font-semibold mb-1">Your Name</label>
-          <input
-            type="text"
-            value={buyerName}
-            onChange={(e) => setBuyerName(e.target.value)}
-            placeholder="Enter your name"
-            className="w-full p-2 rounded border border-gray-300 dark:bg-gray-700 dark:text-gray-200"
-            required
+            value={price || ""}
+            readOnly
+            className="w-full border px-3 py-2 rounded bg-gray-200 text-sm sm:text-base"
           />
         </div>
 
         {/* Special Note */}
         <div>
-          <label className="block font-semibold mb-1">
-            Special Note (Optional)
+          <label className="block font-semibold mb-1 text-sm sm:text-base">
+            Special Note
           </label>
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="Any note for guide..."
-            className="w-full p-2 rounded border border-gray-300 dark:bg-gray-700 dark:text-gray-200"
+            className="w-full border px-3 py-2 rounded text-sm sm:text-base min-h-[100px]"
+            placeholder="Write any special request..."
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
         >
           Book Now
         </button>

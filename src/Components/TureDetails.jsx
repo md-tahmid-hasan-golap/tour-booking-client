@@ -59,6 +59,7 @@ const TureDetails = () => {
           {/* Book Now Button */}
           <Link
             to="/bookingFrom"
+            state={{ tourName, price }} // ✅ send as state
             className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition"
           >
             Book Now
