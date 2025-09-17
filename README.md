@@ -1,12 +1,34 @@
-# React + Vite
+# Project Name
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TourMate - Tour Booking & Management Platform
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A complete tour booking platform where users can browse tours, book trips, manage their bookings, and add or manage their own tour packages. Ideal for travel enthusiasts who want to explore new destinations and manage tours efficiently.
 
-## Expanding the ESLint configuration
+## Live Link
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+firebase --
+
+## Features
+
+- User Login/Register with Firebase Authentication
+- Google Login support
+- Add/Delete/Edit tour packages
+- Book tours and view user-specific bookings
+- Responsive design (mobile & desktop)
+- Dark / Light theme toggle
+- Protected routes for private pages
+
+## Tech Stack
+
+- React.js
+- Tailwind CSS
+- React Router DOM
+- DaisyUI
+- Firebase Authentication
+- MongoDB Atlas
+- Node.js & Express.js
+- SweetAlert2 for notifications
+
+## Folder Structure
