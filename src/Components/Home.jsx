@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Banner from "./Banner";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import TureCards from "./TureCards";
 
 const Home = () => {
@@ -22,6 +22,15 @@ const Home = () => {
           {tures.slice(0, 6).map((ture) => (
             <TureCards key={ture._id} ture={ture}></TureCards>
           ))}
+        </div>
+
+        <div className="mt-4 text-center">
+          <Link
+            to="/allPackages" // <-- এখানে তুমি Show All page এর লিংক দিবে
+            className="inline-block bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 transition"
+          >
+            Show All
+          </Link>
         </div>
       </div>
 
