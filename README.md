@@ -8,7 +8,7 @@ A complete tour booking platform where users can browse tours, book trips, manag
 
 ## Live Link
 
-firebase --
+firebase -- https://ture-booking.web.app/
 
 ## Features
 
