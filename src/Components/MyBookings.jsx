@@ -12,7 +12,7 @@ const MyBookings = () => {
     const fetchBookings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/my-bookings/${user.email}`
+          `https://server-side-kappa-jet.vercel.app/my-bookings/${user.email}`
         );
         const data = await res.json();
         setBookings(data);

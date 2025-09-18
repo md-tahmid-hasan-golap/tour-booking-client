@@ -22,12 +22,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:5000/ture-limit"),
+        loader: () =>
+          fetch("https://server-side-kappa-jet.vercel.app/ture-limit"),
         Component: Home,
       },
       {
         path: "/allPackages",
-        loader: () => fetch("http://localhost:5000/all-tures-cards"),
+        loader: () =>
+          fetch("https://server-side-kappa-jet.vercel.app/all-tures-cards"),
         Component: AllPackages,
       },
       {
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: "/bookingFrom",
         // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/ture-details/${params.id}`),
+        //   fetch(`https://server-side-kappa-jet.vercel.app/ture-details/${params.id}`),
         element: (
           <PrivateRouter>
             <BookingFrom></BookingFrom>
@@ -51,7 +53,9 @@ const router = createBrowserRouter([
       {
         path: "/ture-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/ture-details/${params.id}`),
+          fetch(
+            `https://server-side-kappa-jet.vercel.app/ture-details/${params.id}`
+          ),
         element: (
           <PrivateRouter>
             <TureDetails></TureDetails>
@@ -61,7 +65,9 @@ const router = createBrowserRouter([
       {
         path: "/updateTure/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/ture-details/${params.id}`),
+          fetch(
+            `https://server-side-kappa-jet.vercel.app/ture-details/${params.id}`
+          ),
         element: (
           <PrivateRouter>
             <UpdateTure></UpdateTure>

@@ -37,11 +37,14 @@ const BookingForm = ({ closeModal }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/my-bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData),
-      });
+      const res = await fetch(
+        "https://server-side-kappa-jet.vercel.app/my-bookings",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
+        }
+      );
 
       const data = await res.json();
 

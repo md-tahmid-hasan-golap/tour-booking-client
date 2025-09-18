@@ -30,7 +30,7 @@ const TureCards = ({ ture, showAction = false }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/ture-delete/${_id}`)
+          .delete(`https://server-side-kappa-jet.vercel.app/ture-delete/${_id}`)
           .then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({

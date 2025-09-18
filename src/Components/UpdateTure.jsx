@@ -34,7 +34,10 @@ const UpdateTure = () => {
     };
 
     axios
-      .put(`http://localhost:5000/update-ture/${_id}`, updatedTure)
+      .put(
+        `https://server-side-kappa-jet.vercel.app/update-ture/${_id}`,
+        updatedTure
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           Swal.fire({

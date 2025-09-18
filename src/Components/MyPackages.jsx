@@ -6,7 +6,9 @@ const MyPackages = () => {
   const { user } = useContext(AuthContext);
   const [tures, setTures] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/myAdded-ture/${user?.email}`)
+    fetch(
+      `https://server-side-kappa-jet.vercel.app/myAdded-ture/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setTures(data);

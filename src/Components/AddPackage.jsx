@@ -37,7 +37,7 @@ const AddPackage = () => {
     newPackage.userPhoto = user.photoURL;
     newPackage.userEmail = user.email;
     axios
-      .post("http://localhost:5000/tours", newPackage)
+      .post("https://server-side-kappa-jet.vercel.app/tours", newPackage)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
