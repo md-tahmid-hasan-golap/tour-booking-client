@@ -140,7 +140,9 @@ const Navbar = () => {
             )}
           </div>
 
-          <Link className="btn btn-ghost text-xl font-bold">Tour Booking</Link>
+          <Link className="btn btn-ghost text-xl font-bold hidden md:flex">
+            Tour Booking
+          </Link>
         </div>
 
         {/* Navbar Center */}
@@ -174,25 +176,25 @@ const Navbar = () => {
           </label>
 
           {user ? (
-            <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+            <div className="flex items-center gap-2 sm:gap-3">
               <img
-                className="h-10 w-10 border-2 rounded-full border-green-500"
+                className="h-10 w-10 border-2 rounded-full border-green-500 flex-shrink-0"
                 src={user.photoURL}
                 alt={user.displayName}
                 title={user.displayName}
               />
-              <span className="hidden sm:inline text-md md:text-lg font-medium">
+              <span className="hidden sm:inline text-md md:text-lg font-medium truncate max-w-[120px]">
                 {user.displayName}
               </span>
               <button
                 onClick={handleLogout}
-                className="btn btn-outline btn-sm sm:btn-md text-red-600 whitespace-nowrap"
+                className="btn btn-outline btn-sm sm:btn-md text-red-600 whitespace-nowrap flex-shrink-0"
               >
                 Log Out
               </button>
             </div>
           ) : (
-            <div className="flex gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+            <div className="flex gap-2 sm:gap-3">
               <Link to="/register" className="btn btn-outline btn-sm sm:btn-md">
                 Register
               </Link>

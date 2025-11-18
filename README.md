@@ -1,3 +1,7 @@
+#🔹 Overview
+
+TourMate is a complete tour booking and management platform where users can explore tours, book trips, manage their bookings, and add or manage their own tour packages. It is ideal for travel enthusiasts who want to discover new destinations and manage tours efficiently.
+
 # Project Name
 
 TourMate - Tour Booking & Management Platform
