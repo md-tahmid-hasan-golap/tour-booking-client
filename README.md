@@ -8,6 +8,14 @@ TourMate is a complete tour booking and management platform where users can expl
 
 [TourMate Live](https://ture-booking.web.app/)
 
+## Install dependencies
+
+npm install
+
+## Start the development server
+
+npm run dev
+
 ## Features
 
 - User Login/Register with Firebase Authentication
