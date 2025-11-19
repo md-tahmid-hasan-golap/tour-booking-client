@@ -1,12 +1,20 @@
 # TourMate - Tour Booking & Management Platform
 
+![Tour Booking & Management Screenshot](https://i.postimg.cc/YC3p2SZy/Screenshot-2025-11-19-162102.png)  
+_Home page screenshot of Import Export Hub_
+
 ## Overview
 
 TourMate is a complete tour booking and management platform where users can explore tours, book trips, manage their bookings, and add or manage their own tour packages. It is ideal for travel enthusiasts who want to discover new destinations and manage tours efficiently.
 
 ## Live Link
 
-[TourMate Live](https://ture-booking.web.app/)
+## Live Demo & Repositories
+
+https://ture-booking.web.app/
+
+- **GitHub Client Repository:** [Client Side](https://github.com/md-tahmid-hasan-golap/tour-booking-client)
+- **GitHub Server Repository:** [Server Side](https://github.com/md-tahmid-hasan-golap/tour-booking-server)
 
 ## Install dependencies
 
